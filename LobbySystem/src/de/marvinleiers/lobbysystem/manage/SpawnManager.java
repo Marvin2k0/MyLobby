@@ -45,8 +45,29 @@ public class SpawnManager
 	return spawn;
     }
     
-    public void setWarp(String name)
+    public void setWarp(Location loc, String name)
     {
+	this.config.set("warps." + name + ".world", loc.getWorld().getName());
+	this.config.set("warps." + name + ".x", loc.getX());
+	this.config.set("warps." + name + ".y", loc.getY());
+	this.config.set("warps." + name + ".z", loc.getZ());
+	this.config.set("warps." + name + ".yaw", loc.getYaw());
+	this.config.set("warps." + name + ".pitch", loc.getPitch());
 	
+	Main.getInstance().saveConfig();
+    }
+    
+    public Location getWarp(String name)
+    {
+	if (!this.config.isSet("warps." + name))
+	{
+	    return null;
+	}
+	
+	Location warp = new Location(Bukkit.getWorld(this.config.getString("warps." + name + ".world")), this.config.getDouble("warps." + name + ".x"), this.config.getDouble("warps." + name + ".y"), this.config.getDouble("warps." + name + ".z"));
+	warp.setYaw((float) this.config.getDouble("warps." + name + ".yaw"));
+	warp.setPitch((float) this.config.getDouble("warps." + name + ".pitch"));
+	
+	return warp;
     }
 }

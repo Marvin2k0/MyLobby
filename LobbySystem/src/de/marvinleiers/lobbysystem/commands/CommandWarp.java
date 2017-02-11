@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import de.marvinleiers.lobbysystem.Main;
+
 public class CommandWarp implements CommandExecutor
 {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -19,6 +21,8 @@ public class CommandWarp implements CommandExecutor
 		
 		return true;
 	    }
+	    
+	    Main.getInstance().getSpawnManager().setWarp(p.getLocation(), args[0]);
 	    
 	    return true;
 	}
