@@ -44,4 +44,9 @@ public class SpawnManager
 	
 	return spawn;
     }
+    
+    public void setWarp(String name)
+    {
+	
+    }
 }

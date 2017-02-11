@@ -13,6 +13,13 @@ public class CommandWarp implements CommandExecutor
 	{
 	    Player p = (Player) sender;
 	    
+	    if (args.length != 0)
+	    {
+		p.sendMessage("§c/setwarp <name>");
+		
+		return true;
+	    }
+	    
 	    return true;
 	}
 	else
