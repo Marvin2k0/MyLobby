@@ -12,46 +12,43 @@ import de.marvinleiers.lobbysystem.Main;
 public class CommandSpawn implements CommandExecutor
 {
     private FileConfiguration config = Main.getInstance().getConfig();
-    
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-      if (sender instanceof Player)
-      {
-        final Player p = (Player) sender;
-        
-        if (cmd.getName().equalsIgnoreCase("setspawn"))
-        {
-          Main.getInstance().getSpawnManager().setSpawn(p.getLocation());
+	if (sender instanceof Player)
+	{
+	    Player p = (Player) sender;
 
-          p.sendMessage("§aSpawn wurde gesetzt!");
+	    if (cmd.getName().equalsIgnoreCase("setspawn"))
+	    {
+		Main.getInstance().getSpawnManager().setSpawn(p.getLocation());
 
-          return true;
-        }
-        else if (cmd.getName().equalsIgnoreCase("spawn"))
-        {
-          if (this.config.isSet("spawn"))
-          {
-            Location spawn = Main.getInstance().getSpawnManager().getSpawn();
+		p.sendMessage("§aSpawn wurde gesetzt!");
 
-            p.teleport(spawn);
+		return true;
+	    } else if (cmd.getName().equalsIgnoreCase("spawn"))
+	    {
+		if (this.config.isSet("spawn"))
+		{
+		    Location spawn = Main.getInstance().getSpawnManager().getSpawn();
 
-            return true;
-          }
-          else
-          {
-            p.sendMessage("§cDu musst zuerst einen Spawn mit §e/setspawn §csetzen!");
-            
-            return true;
-          }
-        }
-        
-        return true;
-      }
-      else
-      {
-        sender.sendMessage("§cNur fuer Spieler");
+		    p.teleport(spawn);
 
-        return true;
-      }
+		    return true;
+		} else
+		{
+		    p.sendMessage("§cDu musst zuerst einen Spawn mit §e/setspawn §csetzen!");
+
+		    return true;
+		}
+	    }
+
+	    return true;
+	} else
+	{
+	    sender.sendMessage("§cNur fuer Spieler");
+
+	    return true;
+	}
     }
 }
