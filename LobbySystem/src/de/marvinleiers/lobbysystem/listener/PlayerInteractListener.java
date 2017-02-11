@@ -1,6 +1,5 @@
 package de.marvinleiers.lobbysystem.listener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +23,7 @@ public class PlayerInteractListener implements Listener
 		{
 		    e.setCancelled(true);
 		    
-		    u.getPlayer().openInventory(Bukkit.createInventory(null, 9));
+		    u.getPlayer().openInventory(u.getNavigatorInventory());
 		}
 	    }
 	}

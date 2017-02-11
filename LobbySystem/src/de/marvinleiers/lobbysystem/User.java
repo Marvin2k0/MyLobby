@@ -1,8 +1,10 @@
 package de.marvinleiers.lobbysystem;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import de.marvinleiers.lobbysystem.manage.ItemCreator;
 
@@ -33,5 +35,12 @@ public class User
     public void giveItems()
     {
 	this.getPlayer().getInventory().setItem(4, ItemCreator.createItem("§eNavigator", Material.COMPASS));
+    }
+    
+    public Inventory getNavigatorInventory()
+    {
+	Inventory inv = Bukkit.createInventory(null, 9);
+	
+	return inv;
     }
 }
