@@ -26,7 +26,8 @@ public class CommandSpawn implements CommandExecutor
 		p.sendMessage("§aSpawn wurde gesetzt!");
 
 		return true;
-	    } else if (cmd.getName().equalsIgnoreCase("spawn"))
+	    }
+	    else if (cmd.getName().equalsIgnoreCase("spawn"))
 	    {
 		if (this.config.isSet("spawn"))
 		{
