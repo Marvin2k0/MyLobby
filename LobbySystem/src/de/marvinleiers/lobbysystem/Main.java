@@ -3,6 +3,7 @@ package de.marvinleiers.lobbysystem;
 import de.marvinleiers.lobbysystem.listener.CancelEvents;
 import de.marvinleiers.lobbysystem.listener.JoinEventListener;
 import de.marvinleiers.lobbysystem.listener.PlayerInteractListener;
+import de.marvinleiers.lobbysystem.manage.InventoryManager;
 import de.marvinleiers.lobbysystem.manage.SpawnManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -13,8 +14,11 @@ import java.util.HashMap;
 public class Main extends JavaPlugin
 {
     private static Main instance;
+
     private HashMap<Player, User> player = new HashMap<Player, User>();
+
     private SpawnManager spawnManager;
+    private InventoryManager inventoryManager;
 
     private String prefix;
 
@@ -29,6 +33,7 @@ public class Main extends JavaPlugin
         instance = this;
 
         this.spawnManager = new SpawnManager();
+        this.inventoryManager = new InventoryManager();
         this.prefix = "§7[§bLobby§7] ";
 
         this.registerEvents();
@@ -62,6 +67,11 @@ public class Main extends JavaPlugin
     public SpawnManager getSpawnManager()
     {
         return this.spawnManager;
+    }
+
+    public InventoryManager getInventoryManager()
+    {
+        return this.inventoryManager;
     }
 
     public User getUser(Player player)

@@ -4,16 +4,21 @@ import de.marvinleiers.lobbysystem.manage.ItemCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class User
 {
+    private FileConfiguration inventoryConfig;
+
     private Player p;
 
     public User(Player p)
     {
         this.p = p;
+
+        this.inventoryConfig = Main.getInstance().getInventoryManager().createFile(this.getPlayer().getName());
     }
 
     public Player getPlayer()
@@ -39,6 +44,17 @@ public class User
     public Inventory getNavigatorInventory()
     {
         Inventory inv = Bukkit.createInventory(null, 9);
+
+        if (!this.inventoryConfig.isSet("inventory"))
+        {
+            // [0] [1] [2] [3] [4] [5] [6] [7] [8]
+
+            this.inventoryConfig.set("inventory.navigator", 5);
+            this.inventoryConfig.set("inventory.hideShow", 1);
+            this.inventoryConfig.set("inventory.shop", 8);
+
+            Main.getInstance().getInventoryManager().save(this.inventoryConfig);
+        }
 
         return inv;
     }
