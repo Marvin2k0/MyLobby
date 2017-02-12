@@ -8,12 +8,12 @@ public class ItemCreator
 {
     public static ItemStack createItem(String name, Material type)
     {
-	ItemStack item = new ItemStack(type);
-	ItemMeta meta = item.getItemMeta();
-	
-	meta.setDisplayName(name);
-	item.setItemMeta(meta);
-	
-	return item;
+        ItemStack item = new ItemStack(type);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(name);
+        item.setItemMeta(meta);
+
+        return item;
     }
 }
