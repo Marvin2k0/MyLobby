@@ -26,7 +26,7 @@ public class Main extends JavaPlugin
 	instance = this;
 	
 	this.spawnManager = new SpawnManager();
-	this.prefix = "§7[§9Lobby§7] ";
+	this.prefix = "§7[§bLobby§7] ";
 
 	this.registerEvents();
     }
