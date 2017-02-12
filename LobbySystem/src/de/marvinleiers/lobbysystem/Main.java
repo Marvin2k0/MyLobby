@@ -1,5 +1,6 @@
 package de.marvinleiers.lobbysystem;
 
+import de.marvinleiers.lobbysystem.listener.CancelEvents;
 import de.marvinleiers.lobbysystem.listener.JoinEventListener;
 import de.marvinleiers.lobbysystem.listener.PlayerInteractListener;
 import de.marvinleiers.lobbysystem.manage.SpawnManager;
@@ -38,7 +39,8 @@ public class Main extends JavaPlugin
         Listener[] listeners =
                 {
                         new JoinEventListener(),
-                        new PlayerInteractListener()
+                        new PlayerInteractListener(),
+                        new CancelEvents()
                 };
 
         for (Listener listener : listeners)
