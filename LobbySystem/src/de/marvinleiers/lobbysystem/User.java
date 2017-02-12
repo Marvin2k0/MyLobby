@@ -43,4 +43,9 @@ public class User
 	
 	return inv;
     }
+
+    public boolean inLobby()
+    {
+        return this.getPlayer().getLocation().getWorld().getName() == Main.getInstance().getConfig().getString("spawn.world");
+    }
 }
