@@ -5,6 +5,7 @@ import de.marvinleiers.lobbysystem.User;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 
 public class CancelEvents implements Listener
@@ -15,11 +16,24 @@ public class CancelEvents implements Listener
         if (e.getEntity() instanceof Player)
         {
             User u = Main.getInstance().getUser((Player) e.getEntity());
+
             if (u.inLobby())
             {
                 e.setCancelled(true);
+            }
+        }
+    }
 
-                return;
+    @EventHandler
+    public void onDamage(EntityDamageEvent e)
+    {
+        if (e.getEntity() instanceof Player)
+        {
+            User u = Main.getInstance().getUser((Player) e.getEntity());
+
+            if (u.inLobby())
+            {
+                e.setCancelled(true);
             }
         }
     }
