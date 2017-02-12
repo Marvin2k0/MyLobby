@@ -1,5 +1,7 @@
 package de.marvinleiers.lobbysystem;
 
+import de.marvinleiers.lobbysystem.commands.CommandSpawn;
+import de.marvinleiers.lobbysystem.commands.CommandWarp;
 import de.marvinleiers.lobbysystem.listener.CancelEvents;
 import de.marvinleiers.lobbysystem.listener.JoinEventListener;
 import de.marvinleiers.lobbysystem.listener.PlayerInteractListener;
@@ -37,6 +39,7 @@ public class Main extends JavaPlugin
         this.prefix = "§7[§bLobby§7] ";
 
         this.registerEvents();
+        this.registerCommands();
     }
 
     private void registerEvents()
@@ -52,6 +55,13 @@ public class Main extends JavaPlugin
         {
             this.getServer().getPluginManager().registerEvents(listener, this);
         }
+    }
+
+    private void registerCommands()
+    {
+        this.getCommand("setspawn").setExecutor(new CommandSpawn());
+        this.getCommand("spawn").setExecutor(new CommandSpawn());
+        this.getCommand("setwarp").setExecutor(new CommandWarp());
     }
 
     public User registerUser(Player p)
