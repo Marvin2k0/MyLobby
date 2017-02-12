@@ -16,7 +16,7 @@ public class CommandWarp implements CommandExecutor
 
             if (args.length != 0)
             {
-                p.sendMessage("ï¿½c/setwarp <name>");
+                p.sendMessage("§c/setwarp <name>");
 
                 return true;
             }
@@ -27,7 +27,7 @@ public class CommandWarp implements CommandExecutor
         }
         else
         {
-            sender.sendMessage("ï¿½cNur fuer Spieler!");
+            sender.sendMessage("§cNur fuer Spieler!");
 
             return true;
         }
