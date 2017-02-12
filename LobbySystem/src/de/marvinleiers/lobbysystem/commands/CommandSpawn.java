@@ -22,7 +22,7 @@ public class CommandSpawn implements CommandExecutor
             {
                 Main.getInstance().getSpawnManager().setSpawn(p.getLocation());
 
-                p.sendMessage("Â§aSpawn wurde gesetzt!");
+                p.sendMessage("§aSpawn wurde gesetzt!");
 
                 return true;
             }
@@ -38,7 +38,7 @@ public class CommandSpawn implements CommandExecutor
                 }
                 else
                 {
-                    p.sendMessage("Â§cDu musst zuerst einen Spawn mit ï¿½e/setspawn ï¿½csetzen!");
+                    p.sendMessage("§cDu musst zuerst einen Spawn mit §e/setspawn §csetzen!");
 
                     return true;
                 }
@@ -48,7 +48,7 @@ public class CommandSpawn implements CommandExecutor
         }
         else
         {
-            sender.sendMessage("Â§cNur fuer Spieler");
+            sender.sendMessage("§cNur fuer Spieler");
 
             return true;
         }
