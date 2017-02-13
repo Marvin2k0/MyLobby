@@ -36,7 +36,7 @@ public class SpawnManager
 
     public void setSpawn(Location loc)
     {
-        this.config.set("spawn.world", loc.getWorld());
+        this.config.set("spawn.world", loc.getWorld().getName());
         this.config.set("spawn.x", loc.getX());
         this.config.set("spawn.y", loc.getY());
         this.config.set("spawn.z", loc.getZ());

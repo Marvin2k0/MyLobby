@@ -10,8 +10,6 @@ import org.bukkit.entity.Player;
 
 public class CommandSpawn implements CommandExecutor
 {
-    private FileConfiguration config = Main.getInstance().getConfig();
-
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
         if (sender instanceof Player)
@@ -28,7 +26,7 @@ public class CommandSpawn implements CommandExecutor
             }
             else if (cmd.getName().equalsIgnoreCase("spawn"))
             {
-                if (this.config.isSet("spawn"))
+                if (Main.getInstance().getSpawnManager().exists())
                 {
                     Location spawn = Main.getInstance().getSpawnManager().getSpawn();
 
