@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class CancelEvents implements Listener
@@ -47,6 +48,20 @@ public class CancelEvents implements Listener
         if (u.inLobby())
         {
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onClick(InventoryClickEvent e)
+    {
+        User u = Main.getInstance().getUser((Player) e.getWhoClicked());
+
+        if (u.inLobby() || u.getPlayer().getOpenInventory() != null)
+        {
+            if (u.getPlayer().getOpenInventory().getTopInventory().getName().equals(u.getPlayer().getName() + "'s navigator"))
+            {
+                e.setCancelled(true);
+            }
         }
     }
 }

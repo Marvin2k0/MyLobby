@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class User
 {
@@ -43,7 +44,11 @@ public class User
 
     public Inventory getNavigatorInventory()
     {
-        Inventory inv = Bukkit.createInventory(null, 9);
+        Inventory inv = Bukkit.createInventory(null, 9, this.getPlayer().getName() + "'s navigator");
+
+        ItemStack navigator = ItemCreator.createItem("§eNavigator", Material.COMPASS);
+        ItemStack hideShow = ItemCreator.createItem("§cHide", Material.BLAZE_ROD);
+        ItemStack shop = ItemCreator.createItem("§6Shop", Material.CHEST);
 
         if (!this.inventoryConfig.isSet("inventory"))
         {
@@ -55,6 +60,10 @@ public class User
 
             Main.getInstance().getInventoryManager().save(this.inventoryConfig);
         }
+
+        inv.setItem(this.inventoryConfig.getInt("inventory.navigator"), navigator);
+        inv.setItem(this.inventoryConfig.getInt("inventory.hideShow"), hideShow);
+        inv.setItem(this.inventoryConfig.getInt("inventory.shop"), shop);
 
         return inv;
     }
