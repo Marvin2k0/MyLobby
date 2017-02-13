@@ -18,7 +18,7 @@ public class PlayerInteractListener implements Listener
         {
             if (e.getItem().getType() == Material.COMPASS)
             {
-                if (e.getItem().getItemMeta().getDisplayName().equals("ï¿½eNavigator"))
+                if (e.getItem().getItemMeta().getDisplayName().equals("§eNavigator"))
                 {
                     e.setCancelled(true);
 
