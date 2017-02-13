@@ -14,7 +14,7 @@ public class CommandWarp implements CommandExecutor
         {
             Player p = (Player) sender;
 
-            if (args.length != 0)
+            if (args.length != 1)
             {
                 p.sendMessage("§c/setwarp <name>");
 
@@ -22,6 +22,8 @@ public class CommandWarp implements CommandExecutor
             }
 
             Main.getInstance().getSpawnManager().setWarp(p.getLocation(), args[0]);
+
+            p.sendMessage(Main.getInstance().getPrefix() + "§e" + args[0] + " §awurde gesetzt.");
 
             return true;
         }
