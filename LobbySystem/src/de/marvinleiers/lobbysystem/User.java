@@ -54,8 +54,8 @@ public class User
         {
             // [0] [1] [2] [3] [4] [5] [6] [7] [8]
 
-            this.inventoryConfig.set("inventory.navigator", 5);
-            this.inventoryConfig.set("inventory.hideShow", 1);
+            this.inventoryConfig.set("inventory.navigator", 4);
+            this.inventoryConfig.set("inventory.hideShow", 0);
             this.inventoryConfig.set("inventory.shop", 8);
 
             Main.getInstance().getInventoryManager().save(this.inventoryConfig);
