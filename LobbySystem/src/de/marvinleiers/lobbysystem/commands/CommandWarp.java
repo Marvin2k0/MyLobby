@@ -1,6 +1,7 @@
 package de.marvinleiers.lobbysystem.commands;
 
 import de.marvinleiers.lobbysystem.Main;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +22,16 @@ public class CommandWarp implements CommandExecutor
                 return true;
             }
 
-            Main.getInstance().getSpawnManager().setWarp(p.getLocation(), args[0]);
+            if (p.getItemInHand() == null)
+            {
+                p.sendMessage(Main.getInstance().getPrefix() + "§cDu musst ein Item in der Hand halten.");
+
+                return true;
+            }
+
+            Material item = p.getItemInHand().getType();
+
+            Main.getInstance().getSpawnManager().setWarp(p.getLocation(), args[0], item);
 
             p.sendMessage(Main.getInstance().getPrefix() + "§e" + args[0] + " §awurde gesetzt.");
 

@@ -1,9 +1,12 @@
 package de.marvinleiers.lobbysystem.manage;
 
 import de.marvinleiers.lobbysystem.Main;
+import de.marvinleiers.lobbysystem.Warp;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 public class SpawnManager
 {
@@ -46,7 +49,7 @@ public class SpawnManager
         Main.getInstance().saveConfig();
     }
 
-    public void setWarp(Location loc, String name)
+    public void setWarp(Location loc, String name, Material item)
     {
         this.config.set("warps." + name + ".world", loc.getWorld().getName());
         this.config.set("warps." + name + ".x", loc.getX());
@@ -54,21 +57,24 @@ public class SpawnManager
         this.config.set("warps." + name + ".z", loc.getZ());
         this.config.set("warps." + name + ".yaw", loc.getYaw());
         this.config.set("warps." + name + ".pitch", loc.getPitch());
+        this.config.set("warps." + name + ".item", item.name());
 
         Main.getInstance().saveConfig();
     }
 
-    public Location getWarp(String name)
+    public Warp getWarp(String name)
     {
         if (!this.config.isSet("warps." + name))
         {
             return null;
         }
 
-        Location warp = new Location(Bukkit.getWorld(this.config.getString("warps." + name + ".world")), this.config.getDouble("warps." + name + ".x"), this.config.getDouble("warps." + name + ".y"), this.config.getDouble("warps." + name + ".z"));
-        warp.setYaw((float) this.config.getDouble("warps." + name + ".yaw"));
-        warp.setPitch((float) this.config.getDouble("warps." + name + ".pitch"));
+        Location location = new Location(Bukkit.getWorld(this.config.getString("warps." + name + ".world")), this.config.getDouble("warps." + name + ".x"), this.config.getDouble("warps." + name + ".y"), this.config.getDouble("warps." + name + ".z"));
+        location.setYaw((float) this.config.getDouble("warps." + name + ".yaw"));
+        location.setPitch((float) this.config.getDouble("warps." + name + ".pitch"));
 
-        return warp;
+        ItemStack item = new ItemStack(Material.getMaterial(this.config.getString("warps." + name + ".item")));
+
+        return new Warp(location, item);
     }
 }
