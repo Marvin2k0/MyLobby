@@ -4,6 +4,7 @@ import de.marvinleiers.lobbysystem.manage.ItemCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -61,12 +62,16 @@ public class User
             Main.getInstance().getInventoryManager().save(this.inventoryConfig);
         }
 
-        //TODO
-        Set<String> warps = Main.getInstance().getSpawnManager().getWarps();
-
-        for (String key : warps)
+        for(String str : Main.getInstance().getSpawnManager().getWarps())
         {
-            this.getPlayer().sendMessage(key);
+            int i = 0;
+
+            String name = str;
+            String mainpath = "warps." + name;
+
+            inv.setItem(i, new ItemStack(Material.getMaterial(this.inventoryConfig.getString(mainpath + ".item"))));
+
+            i++;
         }
 
         return inv;
