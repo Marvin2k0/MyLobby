@@ -67,7 +67,6 @@ public class User
             int i = 0;
 
             String name = str;
-            String mainpath = "warps." + name;
 
             inv.setItem(i, Main.getInstance().getSpawnManager().getWarp(name).getItem());
 
