@@ -18,8 +18,12 @@ public class InventoryListener implements Listener
 
         if (u.inLobby() && u.getPlayer().getOpenInventory() != null)
         {
+            u.getPlayer().sendMessage("a");
+
             if (u.getPlayer().getOpenInventory().getTopInventory().getName().equals(u.getPlayer().getName() + "'s navigator"))
             {
+                u.getPlayer().sendMessage("inventar gefunden");
+
                 ItemStack item = e.getCurrentItem();
 
                 if (Main.getInstance().getSpawnManager().getWarp(item.getItemMeta().getDisplayName()) != null)
@@ -32,6 +36,10 @@ public class InventoryListener implements Listener
                 {
                     u.getPlayer().sendMessage(Main.getInstance().getPrefix() + "§cFehler! Warp §e" + item.getItemMeta().getDisplayName() + " §cnicht gefunden.");
                 }
+            }
+            else
+            {
+                u.getPlayer().sendMessage("inventar nicht gefunden.");
             }
         }
     }

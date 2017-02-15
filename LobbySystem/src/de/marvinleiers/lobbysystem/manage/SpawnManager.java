@@ -5,7 +5,6 @@ import de.marvinleiers.lobbysystem.Warp;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
@@ -54,6 +53,7 @@ public class SpawnManager
 
     public void setWarp(Location loc, String name, Material item)
     {
+        this.config.set("warps." + name + ".name", name);
         this.config.set("warps." + name + ".world", loc.getWorld().getName());
         this.config.set("warps." + name + ".x", loc.getX());
         this.config.set("warps." + name + ".y", loc.getY());
@@ -70,6 +70,11 @@ public class SpawnManager
         if (!this.config.isSet("warps." + name))
         {
             return null;
+        }
+
+        if (name.contains("§9"))
+        {
+            name = name.replaceFirst("§9", "");
         }
 
         Location location = new Location(Bukkit.getWorld(this.config.getString("warps." + name + ".world")), this.config.getDouble("warps." + name + ".x"), this.config.getDouble("warps." + name + ".y"), this.config.getDouble("warps." + name + ".z"));
