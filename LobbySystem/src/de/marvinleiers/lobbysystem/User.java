@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,15 @@ public class User
         {
             String name = str;
 
-            inv.setItem(i, Main.getInstance().getSpawnManager().getWarp(name).getItem());
+            Warp warp = Main.getInstance().getSpawnManager().getWarp(name);
+
+            ItemStack item = warp.getItem();
+            ItemMeta meta = item.getItemMeta();
+
+            meta.setDisplayName("§9" + name);
+            item.setItemMeta(meta);
+
+            inv.setItem(i, item);
 
             i++;
 

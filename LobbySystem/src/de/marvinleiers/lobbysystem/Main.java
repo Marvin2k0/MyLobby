@@ -3,6 +3,7 @@ package de.marvinleiers.lobbysystem;
 import de.marvinleiers.lobbysystem.commands.CommandSpawn;
 import de.marvinleiers.lobbysystem.commands.CommandWarp;
 import de.marvinleiers.lobbysystem.listener.CancelEvents;
+import de.marvinleiers.lobbysystem.listener.InventoryListener;
 import de.marvinleiers.lobbysystem.listener.JoinEventListener;
 import de.marvinleiers.lobbysystem.listener.PlayerInteractListener;
 import de.marvinleiers.lobbysystem.manage.InventoryManager;
@@ -48,7 +49,8 @@ public class Main extends JavaPlugin
                 {
                         new JoinEventListener(),
                         new PlayerInteractListener(),
-                        new CancelEvents()
+                        new CancelEvents(),
+                        new InventoryListener()
                 };
 
         for (Listener listener : listeners)
