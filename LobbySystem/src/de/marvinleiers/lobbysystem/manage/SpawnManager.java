@@ -8,6 +8,8 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Set;
+
 public class SpawnManager
 {
     private FileConfiguration config = Main.getInstance().getConfig();
@@ -75,6 +77,11 @@ public class SpawnManager
 
         ItemStack item = new ItemStack(Material.getMaterial(this.config.getString("warps." + name + ".item")));
 
-        return new Warp(location, item);
+        return new Warp(name, location, item);
+    }
+
+    public Set<String> getWarps()
+    {
+        return this.config.getConfigurationSection("warps").getKeys(false);
     }
 }
