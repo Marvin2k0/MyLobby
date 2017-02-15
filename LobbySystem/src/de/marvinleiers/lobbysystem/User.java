@@ -49,7 +49,9 @@ public class User
 
     public Inventory getNavigatorInventory()
     {
-        Inventory inv = Bukkit.createInventory(null, 9, this.getPlayer().getName() + "'s navigator");
+        Inventory inv = Bukkit.createInventory(null, 36, this.getPlayer().getName() + "'s navigator");
+
+        int i = 0;
 
         if (!this.inventoryConfig.isSet("inventory"))
         {
@@ -64,13 +66,18 @@ public class User
 
         for(String str : Main.getInstance().getSpawnManager().getWarps())
         {
-            int i = 0;
-
             String name = str;
 
             inv.setItem(i, Main.getInstance().getSpawnManager().getWarp(name).getItem());
 
             i++;
+
+            if (i > 35)
+            {
+                this.getPlayer().sendMessage(Main.getInstance().getPrefix() + "§cZu viele Warps, nur §e36 §cerlaubt!");
+
+                break;
+            }
         }
 
         return inv;
