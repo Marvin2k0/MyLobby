@@ -69,7 +69,7 @@ public class User
             String name = str;
             String mainpath = "warps." + name;
 
-            inv.setItem(i, new ItemStack(Material.getMaterial(this.inventoryConfig.getString(mainpath + ".item"))));
+            inv.setItem(i, Main.getInstance().getSpawnManager().getWarp(name).getItem());
 
             i++;
         }
